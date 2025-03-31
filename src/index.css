@@ -1,0 +1,198 @@
+@import "tailwindcss";
+/* @plugin "tailwindcss-animate"; */
+
+/* @theme {} */
+
+@utility animation-delay-none {
+  animation-delay: 0s;
+}
+
+@utility animation-delay-inherit {
+  animation-delay: inherit;
+}
+
+@utility animation-delay-initial {
+  animation-delay: initial;
+}
+
+@utility animation-delay-revert {
+  animation-delay: revert;
+}
+
+@utility animation-delay-revert-layer {
+  animation-delay: revert-layer;
+}
+
+@utility animation-delay-unset {
+  animation-delay: unset;
+}
+
+@utility animation-delay-* {
+  animation-delay: --value([ *]);
+  animation-delay: calc(--value(integer) * 1ms);
+}
+
+@utility animation-pause {
+  animation-play-state: paused;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-slate-200;
+  }
+}
+
+@layer components {
+  .kf-rotate {
+    animation: kfc-rotate 1s linear infinite;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+  }
+
+  .kf-translate-x {
+    animation: kfc-translate-x 0.5s linear 1;
+  }
+
+  .-kf-translate-x {
+    animation: -kfc-translate-x 1s linear 1;
+  }
+
+  .kf-fade-in-scale {
+    animation: kfc-scale 1s linear 1;
+  }
+
+  .kf-opacity {
+    animation: kfc-opacity 1s linear 1;
+  }
+
+  .kf-wiggle {
+    animation-name: kfc-wiggle;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .kf-fade-in-down {
+    animation: kfc-fade-in-down 1s ease-in-out;
+  }
+
+  .kf-fade-out-up {
+    animation: kfc-fade-out-up 1.5s ease-in-out;
+  }
+
+  .kf-fade-in-right {
+    animation: kfc-fade-in-right 2s ease-in-out;
+  }
+
+  .kf-bounce {
+    animation: kfc-bounce 1s ease-in-out infinite;
+  }
+}
+
+@keyframes kfc-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes -kfc-translate-x {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes kfc-translate-x {
+  0% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes kfc-scale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(30);
+    opacity: 1;
+  }
+}
+
+@keyframes kfc-opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes kfc-wiggle {
+  50% {
+    transform: rotate(8deg);
+  }
+
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes kfc-fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes kfc-fade-out-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes kfc-fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes kfc-bounce {
+  0%,
+  100% {
+    transform: translateY(-15%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
