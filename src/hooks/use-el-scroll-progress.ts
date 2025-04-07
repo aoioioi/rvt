@@ -17,13 +17,13 @@ export const useElScrollProgress = () => {
       const elementDetails = elScrollRef.current.getBoundingClientRect();
       const { height, top, bottom } = elementDetails;
 
-      if (top <= 15) {
-        const elScrollProgressPx = height - bottom;
-        const progress = elScrollProgressPx / height;
+      if (top <= 0) {
+        const elScrolledPx = height - bottom;
+        const progress = elScrolledPx / height;
         setElScrollProgress(progress);
       }
 
-      if (top > 15) {
+      if (top > 0) {
         setElScrollProgress(0);
       }
     }
