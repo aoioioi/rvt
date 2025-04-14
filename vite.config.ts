@@ -11,4 +11,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  assetsInclude: [
+    "**/*.mp3",
+    "**/*.gltf",
+    "**/*.glb",
+    "**/*.obj",
+    "**/*.fbx",
+  ],
 });
