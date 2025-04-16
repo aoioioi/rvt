@@ -1,5 +1,6 @@
 import { Animations } from "./components/animations";
 import { AudioEditor } from "./components/audio-editor";
+import { BentoGrid } from "./components/bento-grid";
 import { ThreeModel } from "./components/three-fiber-model";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Animations />
       <AudioEditor />
       <ThreeModel />
+      <BentoGrid />
     </>
   );
 }
