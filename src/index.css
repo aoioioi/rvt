@@ -43,6 +43,10 @@
 }
 
 @layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
   .kf-rotate {
     animation: kfc-rotate 1s linear infinite;
     animation-play-state: paused;
