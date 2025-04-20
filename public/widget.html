@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Widget | App</title>
+  <!-- MIT License -->
+  <!-- Made by https://kvega.com -->
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+  <link href="https://unpkg.com/@csstools/normalize.css"
+        rel="stylesheet" />
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background-color: #222a32;
+      color: #e4e4e4;
+      margin: 0 2rem;
+    }
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: #7893b3;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: block;
+      width: fit-content;
+    }
+
+    p {
+      margin: 0 0;
+      display: block;
+    }
+
+    .border {
+      border: 1px solid #e4e4e4;
+    }
+
+    .mx-auto {
+      margin: 0 auto;
+    }
+
+    .font-normal {
+      font-weight: 400;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .text-large {
+      font-size: 1.25rem;
+    }
+
+    .w-container {
+      max-width: 1000px;
+    }
+
+    .pt-4 {
+      padding-top: 4px;
+    }
+
+    .pt-10 {
+      padding-top: 10px;
+    }
+
+    .pb-10 {
+      padding-bottom: 10px;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mx-auto w-container pt-10">
+    <header class="pb-10">
+      <h1 class="text-large font-bold">App Widget</h1>
+    </header>
+    <div id="container">
+    </div>
+  </div>
+  <script>
+    const API_URL = "https://<example>.com/api/mock-data";
+    const container = document.querySelector("#container");
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    const id = params.get("id");
+
+    // IIFE (Immediately Invoked Function Expression)
+    (async () => {
+      try {
+        const response = await fetch(`${API_URL}?${params.toString()}`, {
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+          },
+          "body": JSON.stringify({
+            id,
+          })
+        });
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        // Data type: id, title, brand, image, url
+        const { data } = await response.json();
+
+        for (const d of data) {
+          const itemContainer = document.createElement("div");
+          itemContainer.classList = "mb-20";
+          const imgNode = document.createElement("img");
+          imgNode.src = d.image;
+          itemContainer.appendChild(imgNode);
+          const titleNode = document.createElement("p");
+          titleNode.classList = "pt-4";
+          titleNode.textContent = `${d.brand} ${d.title}`;
+          itemContainer.appendChild(titleNode);
+          const linkNode = document.createElement("a");
+          linkNode.classList = "pt-4";
+          linkNode.text = "Link";
+          linkNode.target = "_blank";
+          linkNode.rel = "noreferrer";
+          linkNode.href = d.url;
+          itemContainer.appendChild(linkNode);
+          container.appendChild(itemContainer);
+        }
+
+        document.title = "Widget | App";
+      } catch (error) {
+        console.error("Error occured", error);
+        const pNode = document.createElement("p");
+        pNode.textContent = "Error - Not found";
+        container.appendChild(pNode);
+        document.title = "Error - Not Found | App";
+      }
+    })();
+  </script>
+</body>
+
+</html>
