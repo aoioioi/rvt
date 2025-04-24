@@ -1,6 +1,7 @@
 import { Animations } from "./components/animations";
 import { AudioEditor } from "./components/audio-editor";
 import { BentoGrid } from "./components/bento-grid";
+import { ImageViewer360 } from "./components/image-viewer-360";
 import { ThreeModel } from "./components/three-fiber-model";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Animations />
       <AudioEditor />
       <ThreeModel />
+      <ImageViewer360 />
       <BentoGrid />
     </>
   );
